@@ -84,6 +84,7 @@
 			                </div>
 			            	@endforeach		                
 						</div>
+						{{$products->links()}}
 					</div>
 	            </div>
 
@@ -135,29 +136,29 @@
 	            <nav class="pull-left">
 	                <ul>
 	                    <li>
-	                        <a href="http://www.creative-tim.com">
-	                            Creative Tim
+	                        <a href="https://www.facebook.com/olmedo.jacome">
+	                            Jesús Olmedo
 	                        </a>
 	                    </li>
 						<li>
-	                        <a href="http://presentation.creative-tim.com">
-	                           About Us
+	                        <a href="https://www.linkedin.com/in/olmedo-jacome-oj/">
+	                           ¿Quienes somos?
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="http://blog.creative-tim.com">
+	                        <a href="http://infolmedo.blogspot.com/">
 	                           Blog
 	                        </a>
 	                    </li>
 	                    <li>
-	                        <a href="http://www.creative-tim.com/license">
-	                            Licenses
+	                        <a href="https://wa.me/593969786985">
+	                            Contacto
 	                        </a>
 	                    </li>
 	                </ul>
 	            </nav>
 	            <div class="copyright pull-right">
-	                &copy; 2016, made with <i class="fa fa-heart heart"></i> by Creative Tim
+	                &copy; 2020, made with <i class="fa fa-heart heart"></i> by Jesús Olmedo
 	            </div>
 	        </div>
 </footer>
