@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Crear Producto')
+@section('title','CrEditarear Producto')
 
 @section('body-class', 'product-page')
 
@@ -12,44 +12,44 @@
 <div class="main main-raised">
 			<div class="container">		    	
 	        	<div class="section">
-	                <h2 class="title text-center"> Registrar Productos</h2>
+	                <h2 class="title text-center"> Editar Producto</h2>
 
-					<form method="post" action="{{ url('/admin/products')}}">
+					<form method="post" action="{{ url('/admin/products/'.$product->id.'/update') }}">
 					@csrf
 
 					<div class="row">
 						<div class="col-sm-6">
 							<div class="form-group label-floating">
 								<label class="control-label">Nombre del producto</label>
-								<input type="text" name="name" class="form-control">
+								<input type="text" name="name" class="form-control" value="{{ $product->name }}">
 							</div>
 						</div>
 
 						<div class="col-sm-6">
 							<div class="form-group label-floating">
-								<label class="control-label">Descripción corta</label>
-								<input type="text" name="description" class="form-control">
+                                <label class="control-label">Precio del producto</label>
+						        <input type="number" step="0.01" name="price" class="form-control" value="{{ $product->price }}">
 							</div>
 						</div>
 					</div>
 					
 									
 					<div class="form-group label-floating">
-						<label class="control-label">Precio del producto</label>
-						<input type="number" name="price" class="form-control">
+                        <label class="control-label">Descripción corta</label>
+						<input type="text" name="description" class="form-control" value="{{ $product->description }}">				
 					</div>					
 
 					<div class="form-group label-floating">
-						<label class="control-label">Tu mensaje</label>
-						<textarea class="form-control" rows="5" name="long_description"></textarea>
+						<label class="control-label">Descripción larga</label>
+						<textarea class="form-control" rows="5" name="long_description">{{$product->long_description}}</textarea>
 					</div>					
 
-					<button class="btn btn-primary">Registrar</button>
+					<button class="btn btn-primary">Guardar cambios</button>
+                    <a href="{{ url('/admin/products') }}" class="btn btn-default">Cancelar</a>
 					</form>
 	            </div>
 
 	        </div>
-
 </div>
 
 <footer class="footer">
