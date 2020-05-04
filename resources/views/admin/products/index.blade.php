@@ -41,12 +41,16 @@
                                             <button type="button" rel="tooltip" title="Ver" class="btn btn-info btn-simple btn-xs">
                                                 <i class="fa fa-info"></i>
                                             </button>
-                                            <a href="{{ url('/admin/products/'.$product->id.'/edit')}}" rel="tooltip" title="Editar" class="btn btn-success btn-simple btn-xs">
+                                            <a href="{{ url('/admin/products/'.$product->id.'/edit') }}" rel="tooltip" title="Editar" class="btn btn-success btn-simple btn-xs">
                                                 <i class="fa fa-edit"></i>
                                             </a>
-                                            <button type="button" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs">
-                                                <i class="fa fa-times"></i>
-                                            </button>
+											<form method="post" action="{{ url('/admin/products/'.$product->id) }}">
+											@csrf
+											@method('DELETE')
+												<button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">
+													<i class="fa fa-times"></i>
+												</button>
+											</form>                                           
                                         </td>
                                     </tr>
                                     @endforeach

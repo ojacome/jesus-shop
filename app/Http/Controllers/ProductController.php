@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\ProductImage;
 
 class ProductController extends Controller
 {
@@ -13,7 +14,7 @@ class ProductController extends Controller
     }
 
     public function create(){
-        return view('admin.products.create');//
+        return view('admin.products.create');
     }
 
     public function store(Request $request){
@@ -48,5 +49,16 @@ class ProductController extends Controller
         $product->save();//update
 
         return redirect('/admin/products');
+    }
+
+    public function destroy($id){    
+        //Product::where('product_id', $id)->delete();
+        ProductImage::where('product_id', $id)->delete();
+     
+        $product = Product::find($id);
+        $product->delete(); // DELETE
+     
+        return back();
+        
     }
 }
