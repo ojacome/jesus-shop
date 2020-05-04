@@ -98,7 +98,7 @@
 	<!--   Core JS Files   -->
 	<script src="{{ asset('js/jquery.min.js')}}" type="text/javascript"></script>
 	<script src="{{ asset('js/bootstrap.min.js')}}" type="text/javascript"></script>
-	<script src="js/material.min.js"></script>
+	<script src="{{ asset('js/material.min.js')}}"></script>
 
 	<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
 	<script src="{{ asset('js/nouislider.min.js')}}" type="text/javascript"></script>

@@ -118,7 +118,7 @@
 	                            <div class="row">
 	                                <div class="col-md-4 col-md-offset-4 text-center">
 	                                    <button class="btn btn-primary btn-raised">
-											Send Message
+											Enviar mensaje
 										</button>
 	                                </div>
 	                            </div>
