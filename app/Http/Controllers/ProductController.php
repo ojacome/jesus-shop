@@ -20,6 +20,24 @@ class ProductController extends Controller
     public function store(Request $request){
         // dd($request->all());
 
+        //validaciones
+        $messages = [
+            'name.required' => 'Es necesario ingresar el nombre del producto.',
+            'name.min' => 'El nombre del producto debe tener al menos 3 caracteres.',            
+            'description.required' => 'Es necesario ingresar la descripcion del producto.',
+            'description.max' => 'La descripción del producto debe tener menos de 200 caracteres.',
+            'price.required' => 'Es necesario ingresar el precio del producto.',
+            'price.numeric' => 'El precio del producto debe tener sólo dígitos.',
+            'price.min' => 'El precio del producto debe ser mayor a cero.'
+        ];
+
+        $rules = [
+            'name' => 'required | min:3',
+            'description' => 'required | max:200',
+            'price' => 'required | numeric | min:0',
+        ];
+        $this->validate($request, $rules, $messages);
+
         $product = new Product();
         $product->name = $request->input('name');
         $product->description = $request->input('description');
@@ -39,6 +57,24 @@ class ProductController extends Controller
 
     public function update(Request $request, $id){
         // dd($request->all());
+
+        //validaciones
+        $messages = [
+            'name.required' => 'Es necesario ingresar el nombre del producto.',
+            'name.min' => 'El nombre del producto debe tener al menos 3 caracteres.',            
+            'description.required' => 'Es necesario ingresar la descripcion del producto.',
+            'description.max' => 'La descripción del producto debe tener menos de 200 caracteres.',
+            'price.required' => 'Es necesario ingresar el precio del producto.',
+            'price.numeric' => 'El precio del producto debe tener sólo dígitos.',
+            'price.min' => 'El precio del producto debe ser mayor a cero.'
+        ];
+
+        $rules = [
+            'name' => 'required | min:3',
+            'description' => 'required | max:200',
+            'price' => 'required | numeric | min:0',
+        ];
+        $this->validate($request, $rules, $messages);
 
         $product = Product::find($id);
 

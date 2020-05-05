@@ -14,6 +14,17 @@
 	        	<div class="section">
 	                <h2 class="title text-center"> Registrar Productos</h2>
 
+					<!-- alert de validaciones  -->
+					@if($errors->any())
+						<div class="alert alert-danger">
+							<ul>
+							@foreach ($errors->all() as $error)
+								<li>{{$error}}</li>								
+							@endforeach
+							</ul>
+						</div>
+					@endif
+					
 					<form method="post" action="{{ url('/admin/products')}}">
 					@csrf
 
@@ -21,30 +32,33 @@
 						<div class="col-sm-6">
 							<div class="form-group label-floating">
 								<label class="control-label">Nombre del producto</label>
-								<input type="text" name="name" class="form-control">
+								<input type="text" name="name" class="form-control" value="{{ old('name')}} ">
 							</div>
 						</div>
 
 						<div class="col-sm-6">
 							<div class="form-group label-floating">
-								<label class="control-label">Descripción corta</label>
-								<input type="text" name="description" class="form-control">
+								<label class="control-label">Precio del producto</label>
+								<input type="number" name="price" class="form-control" value="{{ old('price')}}">
+
+								
 							</div>
 						</div>
 					</div>
 					
 									
 					<div class="form-group label-floating">
-						<label class="control-label">Precio del producto</label>
-						<input type="number" name="price" class="form-control">
+						<label class="control-label">Descripción corta</label>
+						<input type="text" name="description" class="form-control" value="{{ old('description')}}">
 					</div>					
 
 					<div class="form-group label-floating">
-						<label class="control-label">Tu mensaje</label>
-						<textarea class="form-control" rows="5" name="long_description"></textarea>
+						<label class="control-label">Especificaciones</label>
+						<textarea class="form-control" rows="5" name="long_description">{{ old('long_description')}}</textarea>
 					</div>					
 
 					<button class="btn btn-primary">Registrar</button>
+					<a href="{{ url('/admin/products') }}" class="btn btn-default">Cancelar</a>
 					</form>
 	            </div>
 
