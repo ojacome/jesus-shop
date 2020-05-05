@@ -6,14 +6,17 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/admin/products', 'ProductController@index');//listado de productos
+//grupo de rutas se implementa prefijo y dos middleware
+Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
+    //CR
+    Route::get('/products', 'ProductController@index');//listado de productos
+    Route::get('/products/create', 'ProductController@create');//formulario de registro
+    Route::post('/products', 'ProductController@store');//crear
 
-//CR
-Route::get('/admin/products/create', 'ProductController@create');//formulario de registro
-Route::post('/admin/products', 'ProductController@store');//crear
+    //UD
+    Route::get('/products/{id}/edit', 'ProductController@edit');//formulario de edicion
+    Route::post('/products/{id}/update', 'ProductController@update');//actualizar
 
-//UD
-Route::get('/admin/products/{id}/edit', 'ProductController@edit');//formulario de edicion
-Route::post('/admin/products/{id}/update', 'ProductController@update');//actualizar
+    Route::delete('/products/{id}', 'ProductController@destroy');// eliminar
+});
 
-Route::delete('/admin/products/{id}', 'ProductController@destroy');// eliminar
