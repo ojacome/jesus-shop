@@ -12,10 +12,21 @@
     <div class="container">
         
 
-        <div class="section text-center">
-            <h2 class="title">Imágenes de {{$product->name}}</h2>
+        <div class="section ">
+            <h2 class="title text-center">Imágenes de {{$product->name}}</h2>
             
-            <form action="" method="post"> <!-- como no le indicamos action será la misma ruta q se encuentra -->
+            <!-- alert de validaciones  -->
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>								
+                    @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="" method="post" enctype="multipart/form-data"> <!-- como no le indicamos action será la misma ruta q se encuentra -->
             @csrf
                 <input type="file" name="photo" required> 
 
@@ -30,12 +41,12 @@
             
             <hr>
 
-            <div class="row">
+            <div class="row text-center">
             @foreach($images as $image)
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            <img src="{{$image->image}}" alt="imagen de {{$product->name}}">
+                            <img src="{{$image->url}}" alt="imagen de {{$product->name}}" width="250" height="250">
 
                             <button type="submit" class="btn btn-danger btn-round">
                             Eliminar 
