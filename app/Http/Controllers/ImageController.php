@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductImage;
 use Illuminate\Http\Request;
+use File;
 
 class ImageController extends Controller
 {
@@ -21,7 +22,6 @@ class ImageController extends Controller
         $messages = [
             'photo.max' => 'La imagen debe ser menor de 1 MB.'
         ];
-
         $rules = [
             'photo' => 'max:1024'            
         ];
@@ -31,19 +31,39 @@ class ImageController extends Controller
         $file = $request->file('photo');//obtiene el archivo o imagen del request
         $path = public_path().'/images/products';
         $fileName = uniqid().$file->getClientOriginalName();
-        $file->move($path, $fileName);
+        $moved = $file->move($path, $fileName);
 
-        //crear registro en tabla product_images
-        $productImage = new ProductImage();
-        $productImage->image = $fileName;
-        // $productImage->featured = ;
-        $productImage->product_id = $id;
-        $productImage->save(); //INSERT
+        //si la img se guardo correctamente se procede a guardar ruta en base
+        if($moved){
+            //crear registro en tabla product_images
+            $productImage = new ProductImage();
+            $productImage->image = $fileName;
+            // $productImage->featured = ;
+            $productImage->product_id = $id;
+            $productImage->save(); //INSERT
+        }        
 
         return back();
     }
 
-    public function destroy(){
+    public function destroy(Request $request){
+        
+        $deleted = true;
+        $productImage = ProductImage::find($request->image_id);
 
+        //si es una imagen de la nube no hay que borrar archivo, solo registro de base
+        if(substr($productImage->image,0,4) !== "http"){
+            //eliminar el archivo
+            $fullPath = public_path().'/images/products/'.$productImage->image;
+            $deleted = File::delete($fullPath);
+        }
+        
+        //si la imagen se eliminó correctamente se procese a eliminar de base
+        if($deleted){
+            //eliminar el registro en product_images
+            $productImage->delete();
+        }
+
+        return back();
     }
 }

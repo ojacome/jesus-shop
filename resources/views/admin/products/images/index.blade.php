@@ -48,9 +48,15 @@
                         <div class="panel-body">
                             <img src="{{$image->url}}" alt="imagen de {{$product->name}}" width="250" height="250">
 
-                            <button type="submit" class="btn btn-danger btn-round">
-                            Eliminar 
-                            </button>
+                            <form method="post" action="">
+                            @csrf
+                            @method('DELETE')
+                                <input type="hidden" name="image_id" value="{{ $image->id }}">
+                                <button type="submit" class="btn btn-danger btn-round" onclick="return confirm('¿Seguro que deseas eliminar esta imagen?');">
+                                Eliminar 
+                                </button>
+                            </form>
+                            
                         </div>
                     </div>
                 </div>
