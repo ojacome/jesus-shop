@@ -22,6 +22,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
     Route::get('/products/{id}/images', 'ImageController@index');// ver imagenes segun producto
     Route::post('/products/{id}/images', 'ImageController@store');// guardar imagenes segun producto
     Route::delete('/products/{id}/images', 'ImageController@destroy');// eliminar imagenes segun producto
+    Route::get('/products/{id}/images/select/{image}', 'ImageController@select');// destacar imagen
 
 });
 

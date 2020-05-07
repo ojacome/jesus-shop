@@ -52,9 +52,21 @@
                             @csrf
                             @method('DELETE')
                                 <input type="hidden" name="image_id" value="{{ $image->id }}">
+                                
                                 <button type="submit" class="btn btn-danger btn-round" onclick="return confirm('¿Seguro que deseas eliminar esta imagen?');">
                                 Eliminar 
                                 </button>
+
+                                @if($image->featured)
+                                    <button type="button" class="btn btn-primary btn-fab btn-fab-mini btn-round" rel="tooltip" title="DESTACADA">
+                                        <i class="material-icons">favorite</i>
+                                    </button>
+                                @else
+                                    <a href="{{ url('/admin/products/'.$product->id.'/images/select/'.$image->id) }}" rel="tooltip" title="Destacar imagen" class="btn btn-default btn-fab btn-fab-mini btn-round" onclick="return confirm('¿Seguro que deseas destacar esta imagen?');">
+                                        <i class="material-icons">favorite</i>
+                                    </a>
+                                @endif
+                                
                             </form>
                             
                         </div>
