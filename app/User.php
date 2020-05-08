@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Cart;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,4 +37,25 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function carts(){
+
+        return $this->hasMany(Cart::class);
+    }
+
+    //accessor cart_id
+    public function getCartAttribute(){
+
+        $cart = $this->carts()->where('status', 'Active')->first();
+
+        if($cart)
+            return $cart;
+
+        $cart = new Cart();
+        $cart->status = 'Active';
+        $cart->user_id = $this->id;
+        $cart->save();
+
+        return $cart;
+    }
 }

@@ -6,6 +6,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/{id}', 'ProductController@show');
+Route::post('/cart', 'CartDetailController@store');
 
 //grupo de rutas se implementa prefijo y dos middleware
 Route::middleware(['auth','admin'])
@@ -29,4 +30,3 @@ Route::middleware(['auth','admin'])
     Route::get('/products/{id}/images/select/{image}', 'ImageController@select');// destacar imagen
 
 });
-
