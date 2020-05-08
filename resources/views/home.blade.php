@@ -34,6 +34,12 @@
                             </a>
                         </li>
                     </ul>
+
+                    @foreach(auth()->user()->cart->details as $detail)
+                    <ul>
+                        <li>{{ $detail }}</li>
+                    </ul>
+                    @endforeach
 	            </div>
 
 	        </div>
