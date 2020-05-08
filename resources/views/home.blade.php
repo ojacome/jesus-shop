@@ -33,13 +33,46 @@
                                 Pedidos realizados
                             </a>
                         </li>
-                    </ul>
+                    </ul>                                        
 
-                    @foreach(auth()->user()->cart->details as $detail)
-                    <ul>
-                        <li>{{ $detail }}</li>
-                    </ul>
-                    @endforeach
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">imagen</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-right">Precio</th>
+                                <th class="text-right">Cantidad</th>
+                                <th class="text-right">Subtotal</th>
+                                <th class="text-right">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(auth()->user()->cart->details as $detail)
+                            <tr>
+                                <td class="text-center">
+                                    <img src="{{$detail->product->featured_image_url}}" alt="imagen {{$detail->product->name}}" height="50">
+                                </td>
+                                <td class="text-center">{{$detail->product->name}}</td>                                
+                                <td class="text-right">$ {{$detail->product->price}}</td>
+                                <td class="text-right">{{$detail->quantity}}</td>
+                                <td class="text-right">$ {{$detail->quantity * $detail->product->price }}</td>
+                                <td class="td-actions text-right">
+                                    <form method="post" action="{{ url('/admin/products/'.$detail->product->id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                        <a href="{{ url('/admin/products/'.$detail->product->id) }}" target="_blank" rel="tooltip" title="Ver" class="btn btn-info btn-simple btn-xs">
+                                            <i class="fa fa-info"></i>
+                                        </a>                                        
+                                        																								
+                                        <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-danger btn-simple btn-xs" onclick="return confirm('¿Seguro que deseas eliminar este producto?');">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                    </form>                                           
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 	            </div>
 
 	        </div>

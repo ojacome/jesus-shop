@@ -43,7 +43,7 @@ class User extends Authenticatable
         return $this->hasMany(Cart::class);
     }
 
-    //accessor cart_id
+    //accessor cart
     public function getCartAttribute(){
 
         $cart = $this->carts()->where('status', 'Active')->first();
