@@ -10,12 +10,14 @@
 
 <div class="main main-raised">
     <div class="profile-content">
-        <div class="container">
+        <div class="container">            
+
             <div class="row">
                 <div class="profile">
                     <div class="avatar">
                         <img src="{{$product->featured_image_url}}" alt="Circle Image" class="img-circle img-responsive img-raised">
-                    </div>
+                    </div>                    
+
                     <div class="name">
                         <h3 class="title">{{$product->name}}</h3>
                         <h6>{{$product->category->name}}</h6>
@@ -25,6 +27,17 @@
             <div class="description text-center">
                 <p>{{$product->long_description}}</p>
             </div>
+
+             <!-- alert de validaciones  -->
+             @if($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{$error}}</li>								
+                    @endforeach
+                    </ul>
+                </div>
+            @endif
 
             <hr>
             <div class="text-center">

@@ -18,7 +18,7 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
-                    @endif
+                    @endif                   
 
                     <ul class="nav nav-pills nav-pills-primary" role="tablist">
                         <li>
@@ -62,7 +62,7 @@
                                 <td class="text-right">{{$detail->quantity}}</td>
                                 <td class="text-right">$ {{$detail->quantity * $detail->product->price }}</td>
                                 <td class="td-actions text-right">
-                                    <form method="post" action="{{ route('/cart') }}">
+                                    <form method="post" action="{{ url('/cart') }}">
                                     @method('DELETE')
                                     @csrf                                    
                                         <input type="hidden" name="cart_detail_id" value="{{ $detail->id }}">
