@@ -7,6 +7,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/products/{id}', 'ProductController@show');
 Route::post('/cart', 'CartDetailController@store');
+Route::delete('/cart', 'CartDetailController@destroy');
 
 //grupo de rutas se implementa prefijo y dos middleware
 Route::middleware(['auth','admin'])

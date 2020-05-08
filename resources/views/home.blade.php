@@ -33,7 +33,10 @@
                                 Pedidos realizados
                             </a>
                         </li>
-                    </ul>                                        
+                    </ul>         
+
+                    <hr>
+                    <p> Tu carrito de compras presenta {{auth()->user()->cart->details->count()}} productos.</p>                               
 
                     <table class="table">
                         <thead>
@@ -52,15 +55,19 @@
                                 <td class="text-center">
                                     <img src="{{$detail->product->featured_image_url}}" alt="imagen {{$detail->product->name}}" height="50">
                                 </td>
-                                <td class="text-center">{{$detail->product->name}}</td>                                
+                                <td>
+                                    <a href="{{ url('/admin/products/'.$detail->product->id) }}" rel="tooltip" title="Ver">{{$detail->product->name}}</a>
+                                </td>                                 
                                 <td class="text-right">$ {{$detail->product->price}}</td>
                                 <td class="text-right">{{$detail->quantity}}</td>
                                 <td class="text-right">$ {{$detail->quantity * $detail->product->price }}</td>
                                 <td class="td-actions text-right">
-                                    <form method="post" action="{{ url('/admin/products/'.$detail->product->id) }}">
-                                    @csrf
+                                    <form method="post" action="{{ route('/cart') }}">
                                     @method('DELETE')
-                                        <a href="{{ url('/admin/products/'.$detail->product->id) }}" target="_blank" rel="tooltip" title="Ver" class="btn btn-info btn-simple btn-xs">
+                                    @csrf                                    
+                                        <input type="hidden" name="cart_detail_id" value="{{ $detail->id }}">
+
+                                        <a href="{{ url('/admin/products/'.$detail->product->id) }}" rel="tooltip" title="Ver" class="btn btn-info btn-simple btn-xs">
                                             <i class="fa fa-info"></i>
                                         </a>                                        
                                         																								
