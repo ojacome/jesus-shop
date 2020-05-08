@@ -38,6 +38,7 @@
                     <hr>
                     <p> Tu carrito de compras presenta {{auth()->user()->cart->details->count()}} productos.</p>                               
 
+                    @if(auth()->user()->cart->details->count()>0)
                     <table class="table">
                         <thead>
                             <tr>
@@ -80,6 +81,17 @@
                             @endforeach
                         </tbody>
                     </table>
+                    
+                    <div class="text-center">
+                        <form  method="post" action="{{ url('/order') }}">
+                        @csrf
+                            <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddToCart">
+                                <i class="material-icons">done</i> Continuar
+                            </button>
+                        </form>
+                    </div> 
+                    @endif
+                    
 	            </div>
 
 	        </div>
