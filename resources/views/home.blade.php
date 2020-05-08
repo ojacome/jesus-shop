@@ -14,11 +14,11 @@
 	        	<div class="section">
 	                <h2 class="title text-center"> Dashboard</h2>
 
-					@if (session('status'))
+					@if (session('notification'))
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ session('notification') }}
                         </div>
-                    @endif                   
+                    @endif                                     
 
                     <ul class="nav nav-pills nav-pills-primary" role="tablist">
                         <li>

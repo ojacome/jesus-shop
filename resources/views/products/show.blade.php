@@ -39,9 +39,15 @@
                 </div>
             @endif
 
+            @if (session('notification'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('notification') }}
+                </div>
+            @endif  
+
             <hr>
             <div class="text-center">
-                <button class="btn btn-success btn-round" data-toggle="modal" data-target="#modalAddToCart">
+                <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddToCart">
                     <i class="material-icons">add</i> Añadir al carrito
                 </button>
             </div>            
