@@ -39,6 +39,7 @@
                 </div>
             @endif
 
+            <!-- alert de notificacion flash  -->
             @if (session('notification'))
                 <div class="alert alert-success" role="alert">
                     {{ session('notification') }}
