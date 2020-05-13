@@ -57,7 +57,7 @@
                                     <img src="{{$detail->product->featured_image_url}}" alt="imagen {{$detail->product->name}}" height="50">
                                 </td>
                                 <td>
-                                    <a href="{{ url('/admin/products/'.$detail->product->id) }}" rel="tooltip" title="Ver">{{$detail->product->name}}</a>
+                                    <a href="{{ url('/products/'.$detail->product->id) }}" rel="tooltip" title="Ver">{{$detail->product->name}}</a>
                                 </td>                                 
                                 <td class="text-right">$ {{$detail->product->price}}</td>
                                 <td class="text-right">{{$detail->quantity}}</td>
@@ -68,7 +68,7 @@
                                     @csrf                                    
                                         <input type="hidden" name="cart_detail_id" value="{{ $detail->id }}">
 
-                                        <a href="{{ url('/admin/products/'.$detail->product->id) }}" rel="tooltip" title="Ver" class="btn btn-info btn-simple btn-xs">
+                                        <a href="{{ url('/products/'.$detail->product->id) }}" rel="tooltip" title="Ver" class="btn btn-info btn-simple btn-xs">
                                             <i class="fa fa-info"></i>
                                         </a>                                        
                                         																								
