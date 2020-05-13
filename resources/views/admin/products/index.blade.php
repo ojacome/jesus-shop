@@ -14,7 +14,14 @@
 
 	        	<div class="section text-center">
 	                <h2 class="title">Productos</h2>
-					
+
+					<!-- alert de notificacion flash  -->
+                    @if (session('notification'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('notification') }}
+                        </div>
+                    @endif  
+
 					<div class="team">
 						<div class="row">
                             <a href="{{ url('/admin/products/create')}}" type="button" class="btn btn-primary btn-round">Nuevo producto</a>
@@ -44,7 +51,7 @@
 											<form method="post" action="{{ url('/admin/products/'.$product->id) }}">
 											@csrf
 											@method('DELETE')
-												<a href="#" rel="tooltip" title="Ver" class="btn btn-info btn-simple btn-xs">
+												<a href="{{ url('/products/'.$product->id) }}" rel="tooltip" title="Ver" class="btn btn-info btn-simple btn-xs">
 													<i class="fa fa-info"></i>
 												</a>
 

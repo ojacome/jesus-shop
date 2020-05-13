@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','CrEditarear Producto')
+@section('title','Editar Producto')
 
 @section('body-class', 'product-page')
 
@@ -44,11 +44,31 @@
 						</div>
 					</div>
 					
-									
-					<div class="form-group label-floating">
-                        <label class="control-label">Descripción corta</label>
-						<input type="text" name="description" class="form-control" value="{{ old('description', $product->description) }}">				
-					</div>					
+					<div class="row">
+						<div class="col-sm-6">
+							<div class="form-group label-floating">
+								<label class="control-label">Descripción corta</label>
+								<input type="text" name="description" class="form-control" value="{{ old('description', $product->description)}}">
+							</div>	
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group label-floating">
+								<label class="control-label">Categoría del producto</label>
+
+								<select class="form-control" name="category_id" >									
+									@foreach($categories as $category)
+										<option value="{{ $category->id }}" 
+										@if($category->id == old('category_id', $product->category->id))
+										selected
+										@endif>
+										{{ $category->name }}
+										</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+					</div>																
 
 					<div class="form-group label-floating">
 						<label class="control-label">Especificaciones</label>
