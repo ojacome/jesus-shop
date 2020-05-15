@@ -61,15 +61,19 @@
 											Recordar sesión
 										</label>
                                     </div>
+
+									<div class="form-group text-center">
+										<a href="{{ route('password.request') }}">
+											{{ __('Forgot Your Password?') }}
+										</a>									
+									</div>
                                     
 								</div>
 								<div class="footer text-center">
 									<button type="submit" class="btn btn-simple btn-primary btn-lg">Ingresar</a>
                                 </div>
                                 
-                                <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a> -->
+                                
 
 							</form>
 						</div>
