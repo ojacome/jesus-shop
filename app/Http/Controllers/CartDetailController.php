@@ -14,6 +14,7 @@ class CartDetailController extends Controller
     }
 
     public function store(Request $request){
+        // dd($request);
 
         //validaciones
         $messages = [            
@@ -27,10 +28,15 @@ class CartDetailController extends Controller
         ];
         $this->validate($request, $rules, $messages);
 
+        $product = json_decode($request->product);
+        // dd($product);
+
         $cartDetail = new CartDetail();
         $cartDetail->cart_id = auth()->user()->cart->id;
-        $cartDetail->product_id = $request->product_id;
+        $cartDetail->product_id = $product->id;
         $cartDetail->quantity = $request->quantity;
+        $cartDetail->price = $product->price;
+        $cartDetail->total = $cartDetail->calcularTotal();
         $result = $cartDetail->save();
 
         if($result){

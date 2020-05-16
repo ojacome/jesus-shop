@@ -59,9 +59,9 @@
                                 <td>
                                     <a href="{{ url('/products/'.$detail->product->id) }}" rel="tooltip" title="Ver">{{$detail->product->name}}</a>
                                 </td>                                 
-                                <td class="text-right">$ {{$detail->product->price}}</td>
+                                <td class="text-right">$ {{$detail->price}}</td>
                                 <td class="text-right">{{$detail->quantity}}</td>
-                                <td class="text-right">$ {{$detail->quantity * $detail->product->price }}</td>
+                                <td class="text-right">$ {{$detail->total }}</td>
                                 <td class="td-actions text-right">
                                     <form method="post" action="{{ url('/cart') }}">
                                     @method('DELETE')
@@ -85,7 +85,7 @@
                     <div class="text-center">
                         <form  method="post" action="{{ url('/order') }}">
                         @csrf
-                            <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddToCart">
+                            <button class="btn btn-primary btn-round" >
                                 <i class="material-icons">done</i> Continuar
                             </button>
                         </form>
