@@ -28,21 +28,28 @@ class CartDetailController extends Controller
         ];
         $this->validate($request, $rules, $messages);
 
+        
         $product = json_decode($request->product);
         // dd($product);
+        if(auth()->user()->cart->existeProducto($product->id)){
+            $alert = "Alerta: El producto ya existe en el carrito de compras.";
+            return back()->with(compact('alert'));
 
-        $cartDetail = new CartDetail();
-        $cartDetail->cart_id = auth()->user()->cart->id;
-        $cartDetail->product_id = $product->id;
-        $cartDetail->quantity = $request->quantity;
-        $cartDetail->price = $product->price;
-        $cartDetail->total = $cartDetail->calcularTotal();
-        $result = $cartDetail->save();
-
-        if($result){
-            $notification = "Producto agregado al carrito de compras.";
+        }else{
+            $cartDetail = new CartDetail();
+            $cartDetail->cart_id = auth()->user()->cart->id;
+            $cartDetail->product_id = $product->id;
+            $cartDetail->quantity = $request->quantity;
+            $cartDetail->price = $product->price;
+            $cartDetail->total = $cartDetail->calcularTotal();
+            $result = $cartDetail->save();
+    
+            if($result){
+                $notification = "Producto agregado al carrito de compras.";
+            }
         }
-        
+        // $activeCart = auth()->user()->cart;
+        // $productAlreadyExists = $activeCart->details()->where('product_id', $product->id)->exists();        
         return back()->with(compact('notification'));
     }
 

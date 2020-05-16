@@ -46,12 +46,25 @@
                 </div>
             @endif  
 
+            <!-- alert de notificacion flash  -->
+            @if (session('alert'))
+                <div class="alert alert-warning" role="alert">
+                    {{ session('alert') }}
+                </div>
+            @endif  
+
             <hr>
             <div class="text-center">
+            @if(auth()->user()->cart->existeProducto($product->id))                
+                <a href="{{ url('/home') }}" class="btn btn-primary btn-round">
+                    <i class="material-icons">arrow_forward</i> Producto en el carrito
+                </a>                
+            @else                
                 <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#modalAddToCart">
                     <i class="material-icons">add</i> Añadir al carrito
-                </button>
-            </div>            
+                </button>                
+            @endif        
+            </div>
             <hr>         
 
             <div class="row">

@@ -15,4 +15,10 @@ class CartDetail extends Model
     public function calcularTotal(){
         return $this->price * $this->quantity;
     }
+
+    public function validar($id){
+        if($this->product_id == $id)
+            return false;
+        return true;
+    }
 }
