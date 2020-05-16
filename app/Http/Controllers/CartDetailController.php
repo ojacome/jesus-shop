@@ -48,8 +48,7 @@ class CartDetailController extends Controller
                 $notification = "Producto agregado al carrito de compras.";
             }
         }
-        // $activeCart = auth()->user()->cart;
-        // $productAlreadyExists = $activeCart->details()->where('product_id', $product->id)->exists();        
+             
         return back()->with(compact('notification'));
     }
 
