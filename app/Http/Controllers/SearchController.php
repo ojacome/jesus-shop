@@ -27,7 +27,7 @@ class SearchController extends Controller
 
     public function data(){
         
-        $products = Product::pluck('name');
+        $products = Product::pluck('name');        
         return $products;
     }
 }

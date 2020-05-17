@@ -114,9 +114,9 @@
 		                    <div class="col-md-4">
 								<div class="info">
 									<div class="icon icon-danger">
-										<i class="material-icons">Información privada</i>
+										<i class="material-icons">fingerprint</i>
 									</div>
-									<h4 class="info-title">Third Feature</h4>
+									<h4 class="info-title">Información privada</h4>
 									<p>Los pedidos que realices solo los conoceras tu atraves de tu panel de usuario. Nadie mas tiene acceso a esta informacion.</p>
 								</div>
 		                    </div>
@@ -205,6 +205,7 @@
 @section('scripts')
 <script src="{{ asset('/js/typeahead.bundle.min.js') }}"></script>
 <script>
+	console.log("{{ url('products/json') }} ");
 	$(function(){
 		var products = new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -212,7 +213,7 @@
 			// `states` is an array of state names defined in "The Basics"
 			prefetch: '{{ url("products/json") }}'
 		});
-
+		
 		$('#search').typeahead({
 			hint: true,
 			highlight: true,

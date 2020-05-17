@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('description');
             $table->text('long_description')->nullable();//text cuando la extension es mayor
             $table->float('price');
+            $table->integer('stock')->default(0);
 
             //clave foranea
             $table->unsignedBigInteger('category_id')->nullable();//columna que nos va a servir como id de la relacion como tal

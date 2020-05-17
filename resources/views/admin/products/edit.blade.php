@@ -29,44 +29,52 @@
 					@csrf
 
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group label-floating">
 								<label class="control-label">Nombre del producto</label>
 								<input type="text" name="name" class="form-control" value="{{ old('name', $product->name) }}">
 							</div>
 						</div>
 
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group label-floating">
                                 <label class="control-label">Precio del producto</label>
 						        <input type="number" step="0.01" name="price" class="form-control" value="{{ old('price', $product->price) }}">
 							</div>
 						</div>
+
+						<div class="col-sm-4">
+							<div class="form-group label-floating">
+                                <label class="control-label">STOCK</label>
+						        <input type="number" name="stock" class="form-control" value="{{ old('stock', $product->stock) }}">
+							</div>
+						</div>
 					</div>
 					
 					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group label-floating">
-								<label class="control-label">Descripción corta</label>
-								<input type="text" name="description" class="form-control" value="{{ old('description', $product->description)}}">
-							</div>	
-						</div>
-
-						<div class="col-sm-6">
+						
+						<div class="col-sm-4">
 							<div class="form-group label-floating">
 								<label class="control-label">Categoría del producto</label>
-
+								
 								<select class="form-control" name="category_id" >									
 									@foreach($categories as $category)
-										<option value="{{ $category->id }}" 
+									<option value="{{ $category->id }}" 
 										@if($category->id == old('category_id', $product->category->id))
 										selected
 										@endif>
 										{{ $category->name }}
-										</option>
+									</option>
 									@endforeach
 								</select>
 							</div>
+						</div>
+
+						<div class="col-sm-8">
+							<div class="form-group label-floating">
+								<label class="control-label">Descripción corta</label>
+								<input type="text" name="description" class="form-control" value="{{ old('description', $product->description)}}">
+							</div>	
 						</div>
 					</div>																
 

@@ -35,6 +35,7 @@
                                         <th class="col-md-2 text-center">Nombre</th>
                                         <th class="col-md-5 text-center">Descripcion</th>
                                         <th class="text-center">Categoria</th>
+                                        <th class="text-center">Stock</th>
                                         <th class="text-right">Precio</th>
                                         <th class="text-right">Opciones</th>
                                     </tr>
@@ -46,6 +47,7 @@
                                         <td>{{$product->name}}</td>
                                         <td>{{$product->description}}</td>
                                         <td>{{$product->category ? $product->category->name : 'General'}}</td>
+                                        <td class="text-center">{{$product->stock}}</td>
                                         <td class="text-right">$ {{$product->price}}</td>
                                         <td class="td-actions text-right">
 											<form method="post" action="{{ url('/admin/products/'.$product->id) }}">

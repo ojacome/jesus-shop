@@ -31,13 +31,17 @@ class ProductController extends Controller
             'description.max' => 'La descripción del producto debe tener menos de 200 caracteres.',
             'price.required' => 'Es necesario ingresar el precio del producto.',
             'price.numeric' => 'El precio del producto debe tener sólo dígitos.',
-            'price.min' => 'El precio del producto debe ser mayor a cero.'
+            'price.min' => 'El precio del producto debe ser mayor a cero.',
+            'stock.required' => 'Es necesario ingresar el stock del producto.',
+            'stock.numeric' => 'El stock del producto debe tener sólo dígitos.',
+            'stock.min' => 'El stock del producto debe ser mayor a cero.'
         ];
 
         $rules = [
             'name' => 'required | min:3',
             'description' => 'required | max:200',
             'price' => 'required | numeric | min:0',
+            'stock' => 'required | numeric | min:0'
         ];
         $this->validate($request, $rules, $messages);
 
@@ -46,6 +50,7 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->long_description = $request->input('long_description');
+        $product->stock = $request->input('stock');
         $product->category_id = $request->category_id;
         $result = $product->save();//insert
 
@@ -74,13 +79,17 @@ class ProductController extends Controller
             'description.max' => 'La descripción del producto debe tener menos de 200 caracteres.',
             'price.required' => 'Es necesario ingresar el precio del producto.',
             'price.numeric' => 'El precio del producto debe tener sólo dígitos.',
-            'price.min' => 'El precio del producto debe ser mayor a cero.'
+            'price.min' => 'El precio del producto debe ser mayor a cero.',            
+            'stock.required' => 'Es necesario ingresar el stock del producto.',
+            'stock.numeric' => 'El stock del producto debe tener sólo dígitos.',
+            'stock.min' => 'El stock del producto debe ser mayor a cero.'
         ];
 
         $rules = [
             'name' => 'required | min:3',
             'description' => 'required | max:200',
             'price' => 'required | numeric | min:0',
+            'stock' => 'required | numeric | min:0'
         ];
         $this->validate($request, $rules, $messages);
 
@@ -90,10 +99,15 @@ class ProductController extends Controller
         $product->description = $request->input('description');
         $product->price = $request->input('price');
         $product->long_description = $request->input('long_description');
+        $product->stock = $request->input('stock');
         $product->category_id = $request->category_id;
-        $product->save();//update
+        $result = $product->save();//update
 
-        return redirect('/admin/products');
+        if($result){
+            $notification = "Cambios guardados con éxito.";
+        }
+
+        return redirect('/admin/products')->with(compact('notification'));
     }
 
     public function destroy($id){    

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use auth;
+use App\Product;
 use App\CartDetail;
 use Illuminate\Http\Request;
 
@@ -27,28 +28,35 @@ class CartDetailController extends Controller
             'quantity' => 'required | numeric | min:0',
         ];
         $this->validate($request, $rules, $messages);
+                
+        $product = Product::find($request->product_id);
 
-        
-        $product = json_decode($request->product);
         // dd($product);
         if(auth()->user()->cart->existeProducto($product->id)){
             $alert = "Alerta: El producto ya existe en el carrito de compras.";
             return back()->with(compact('alert'));
-
-        }else{
-            $cartDetail = new CartDetail();
-            $cartDetail->cart_id = auth()->user()->cart->id;
-            $cartDetail->product_id = $product->id;
-            $cartDetail->quantity = $request->quantity;
-            $cartDetail->price = $product->price;
-            $cartDetail->total = $cartDetail->calcularTotal();
-            $result = $cartDetail->save();
-    
-            if($result){
-                $notification = "Producto agregado al carrito de compras.";
-            }
         }
-             
+        
+        if(!$product->existeStock($request->quantity)){
+            $alert = "Estimado cliente: Por el momento no tenemos stock para la cantidad solicitada.";
+            return back()->with(compact('alert'));
+        }
+        
+        $product->stock = $product->actualizarStock($request->quantity);
+        $product->save();
+
+        $cartDetail = new CartDetail();
+        $cartDetail->cart_id = auth()->user()->cart->id;
+        $cartDetail->product_id = $product->id;
+        $cartDetail->quantity = $request->quantity;
+        $cartDetail->price = $product->price;
+        $cartDetail->total = $cartDetail->calcularTotal();
+        $result = $cartDetail->save();
+
+        if($result){
+            $notification = "Producto agregado al carrito de compras.";
+        }
+                     
         return back()->with(compact('notification'));
     }
 
@@ -57,6 +65,10 @@ class CartDetailController extends Controller
         
         //validar que el cart_detail sea del usuario
         if($cartDetail->cart_id == auth()->user()->cart->id){
+            $product = Product::find($cartDetail->product_id);
+            $product->stock = $product->restoreStock($cartDetail->quantity);
+            $product->save();
+
             $result = $cartDetail->delete();
         }        
         

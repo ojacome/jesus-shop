@@ -29,32 +29,30 @@
 					@csrf
 
 					<div class="row">
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group label-floating">
 								<label class="control-label">Nombre del producto</label>
 								<input type="text" name="name" class="form-control" value="{{ old('name')}} ">
 							</div>
 						</div>
 
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group label-floating">
 								<label class="control-label">Precio del producto</label>
-								<input type="number" name="price" class="form-control" value="{{ old('price')}}">
+								<input type="number" name="price" min="1" class="form-control" value="{{ old('price')}}">						
+							</div>
+						</div>
 
-								
+						<div class="col-sm-4">
+							<div class="form-group label-floating">
+								<label class="control-label">STOCK</label>
+								<input type="number" name="stock" min="0" class="form-control" value="{{ old('stock')}}">						
 							</div>
 						</div>
 					</div>
 					
 					<div class="row">
-						<div class="col-sm-6">
-							<div class="form-group label-floating">
-								<label class="control-label">Descripción corta</label>
-								<input type="text" name="description" class="form-control" value="{{ old('description')}}">
-							</div>	
-						</div>
-
-						<div class="col-sm-6">
+						<div class="col-sm-4">
 							<div class="form-group label-floating">
 								<label class="control-label">Categoría del producto</label>
 
@@ -65,6 +63,13 @@
 								</select>
 							</div>
 						</div>
+						<div class="col-sm-8">
+							<div class="form-group label-floating">
+								<label class="control-label">Descripción corta</label>
+								<input type="text" name="description" class="form-control" value="{{ old('description')}}">
+							</div>	
+						</div>
+
 					</div>																		
 
 					<div class="form-group label-floating">

@@ -33,4 +33,22 @@ class Product extends Model
         //imagen por defecto
         return '/images/products/no_image.png';
     }
+
+    public function existeStock($quantity){
+
+        if($quantity <= $this->stock)
+            return true;
+        else
+            return false;
+    }
+
+    public function actualizarStock($quantity){
+
+        return $this->stock - $quantity; 
+    }
+
+    public function restoreStock($quantity){
+
+        return $this->stock + $quantity; 
+    }
 }
