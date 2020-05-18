@@ -3663,11 +3663,15 @@ h2.title {
 }
 .landing-page .header .title {
   color: #FFFFFF;
+
 }
 .landing-page .wrapper {
   background: #CCCCCC;
 }
-
+.profile-page .header .title {
+  color: #FFFFFF;
+  margin-top: 120px;   
+}
 .profile-page .header {
   height: 380px;
   background-position: top center;

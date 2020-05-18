@@ -2,11 +2,17 @@
 
 @section('title','Carrito de compras')
 
-@section('body-class', 'product-page')
+@section('body-class', 'profile-page')
 
 @section('content')
 <div class="header header-filter" style="background-image: url('https://images.unsplash.com/photo-1423655156442-ccc11daa4e99?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1450');">
-     
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1 class="title text-center">Carrito de compras</h1>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="main main-raised">
@@ -17,26 +23,11 @@
                         <div class="alert alert-success" role="alert">
                             {{ session('notification') }}
                         </div>
-                    @endif                                     
+                    @endif                                                               
 
-                    <ul class="nav nav-pills nav-pills-primary" role="tablist">
-                        <li class="active">
-                            <a href="#dashboard" role="tab" data-toggle="tab">
-                                <i class="material-icons">shopping_cart</i>
-                                Carrito de compras
-                            </a>
-                        </li>                        
-                        <li>
-                            <a href="#tasks" role="tab" data-toggle="tab">
-                                <i class="material-icons">list</i>
-                                Pedidos realizados
-                            </a>
-                        </li>
-                    </ul>         
-
-                    <hr>
                     <p> Tu carrito de compras presenta {{auth()->user()->cart->details->count()}} productos.</p>                               
-
+                    <hr>
+                    
                     @if(auth()->user()->cart->details->count()>0)
                     <table class="table">
                         <thead>

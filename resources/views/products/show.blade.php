@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title','Dashboard')
+@section('title','Producto')
 
 @section('body-class', 'profile-page')
 

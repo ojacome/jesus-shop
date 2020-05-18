@@ -46,8 +46,14 @@
                                     <a href="{{ route('register') }}">{{ __('Regístrate') }}</a>
                                 </li>
                             @endif
-                            @else
-                            <li class="dropdown">
+							@else
+							<li>
+								<a  href="{{ url('/home') }}" role="button">
+									<i class="material-icons">shopping_cart</i>
+                                </a>
+							</li>
+
+                            <li class="dropdown">								
                                 <a id="navbarDropdown" class="dropdown-toggle" href="#" role="button" data-toggle="dropdown"  aria-expanded="false" >
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
