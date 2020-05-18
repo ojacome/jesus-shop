@@ -10,7 +10,7 @@
 			margin-bottom: 5em;
 		}
 
-		.row {
+		.team .row {
 			display: -webkit-box;
 			display: -webkit-flex;
 			display: -ms-flexbox;
@@ -18,7 +18,7 @@
 			flex-wrap: wrap;
 		}
 
-		.row > [class*='col-'] {
+		.team .row > [class*='col-'] {
 			display: flex;
 			flex-direction: column;
 		}
@@ -30,15 +30,19 @@
 		}
 
 		.tt-hint {
-		color: #999
+		color: #ffffff
 		}
 
+		#search{
+			width: 522px
+		}
 		.tt-menu {    /* used to be tt-dropdown-menu in older versions */
-		width: 222px;
+		color: #000;
+		width: 522px;
 		margin-top: 4px;
 		padding: 4px 0;
 		background-color: #fff;
-		border: 1px solid #ccc;
+		border: 1px solid #fff;
 		border: 1px solid rgba(0, 0, 0, 0.2);
 		-webkit-border-radius: 4px;
 			-moz-border-radius: 4px;
@@ -54,8 +58,8 @@
 		}
 
 		.tt-suggestion.tt-cursor,.tt-suggestion:hover {
-		color: #fff;
-		background-color: #0097cf;
+		color: #000;
+		background-color: #9c27b0;
 
 		}
 
@@ -69,13 +73,16 @@
 <div class="header header-filter" style="background-image: url('https://images.unsplash.com/photo-1423655156442-ccc11daa4e99?crop=entropy&dpr=2&fit=crop&fm=jpg&h=750&ixjsv=2.1.0&ixlib=rb-0.3.5&q=50&w=1450');">
     <div class="container">
         <div class="row">
-			<div class="col-md-6">
+			<div class="col-md-8">
 				<h1 class="title">Bienvenido a la Tienda Virtual.</h1>
 	            <h4>Realiza pedidos en linea y te contactaremos para coordinar la entrega.</h4>
-	            <br />
-	            <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn btn-danger btn-raised btn-lg">
-					<i class="fa fa-play"></i>   ¿Cómo funciona?
-				</a>
+	            <br />	            
+				<form action="{{ url('/search') }}" class="form-inline" method="get">
+					<input type="text" class="form-control" placeholder="¿Qué producto buscas?" name="query" id="search">
+					<button class="btn btn-primary btn-just-icon" type="submit">
+						<i class="material-icons">search</i>
+					</button>
+				</form>
 			</div>
         </div>
     </div>
@@ -125,14 +132,7 @@
 	            </div>
 
 	        	<div class="section text-center">
-	                <h2 class="title">Categorías</h2>
-
-					<form action="{{ url('/search') }}" class="form-inline" method="get">
-						<input type="text" class="form-control" placeholder="¿Qué producto buscas?" name="query" id="search">
-						<button class="btn btn-primary btn-just-icon" type="submit">
-							<i class="material-icons">search</i>
-						</button>
-					</form>
+	                <h2 class="title">Categorías</h2>					
 
 					<div class="team">
 						<div class="row">
@@ -205,7 +205,7 @@
 @section('scripts')
 <script src="{{ asset('/js/typeahead.bundle.min.js') }}"></script>
 <script>
-	console.log("{{ url('products/json') }} ");
+	
 	$(function(){
 		var products = new Bloodhound({
 			datumTokenizer: Bloodhound.tokenizers.whitespace,

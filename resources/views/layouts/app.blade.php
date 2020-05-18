@@ -23,7 +23,7 @@
 </head>
 
 <body class="@yield('body-class')">
-	<nav class="navbar navbar-transparent navbar-absolute">
+	<nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
     	<div class="container">
         	<!-- Brand and toggle get grouped for better mobile display -->
         	<div class="navbar-header">
@@ -32,7 +32,8 @@
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
 		            <span class="icon-bar"></span>
-        		</button>
+				</button>
+				
         		<a class="navbar-brand" href="{{ url('/') }}">Tienda Virtual</a>
         	</div>
 
