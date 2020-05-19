@@ -49,7 +49,13 @@
 							@else
 							<li>
 								<a  href="{{ url('/home') }}" role="button">
-									<i class="material-icons">shopping_cart</i>
+									<i class="material-icons">
+										@if(auth()->user()->admin)
+										dashboard
+										@else
+										shopping_cart
+										@endif
+									</i>
                                 </a>
 							</li>
 
@@ -60,11 +66,8 @@
 
                                 <ul class="dropdown-menu" role="menu">
 
-									<li>
-										<a href="{{ url('/home') }}">Dashboard</a>
-									</li>
+									@if(auth()->user()->admin)									
 
-									@if(auth()->user()->admin)
 									<li>
 										<a href="{{ url('/admin/products') }}">Gestionar productos</a>
 									</li>

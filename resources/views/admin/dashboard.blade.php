@@ -16,33 +16,33 @@
 </div>
 
 <div class="main main-raised">
-			<div class="container">		    	
-	        	<div class="section">
-	                                
-					@if (session('notification'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('notification') }}
-                        </div>
-                    @endif                                     
+    <div class="container">		    	
+        <div class="section">
+                            
+            @if (session('notification'))
+                <div class="alert alert-success" role="alert">
+                    {{ session('notification') }}
+                </div>
+            @endif                                     
+            
+            <ul class="nav nav-pills nav-pills-primary" role="tablist">
+                <li>
+                    <a href="{{ url('/admin/products') }}" >
+                        <i class="material-icons">desktop_mac</i>
+                        Gestionar productos
+                    </a>
+                </li>                        
+                <li>
+                    <a href="{{ url('/admin/categories') }}" >
+                        <i class="material-icons">category</i>
+                        Gestionar Categorías
+                    </a>
+                </li>
+            </ul>                             
+            
+        </div>
 
-                    <ul class="nav nav-pills nav-pills-primary" role="tablist">
-                        <li class="active">
-                            <a href="#dashboard" role="tab" data-toggle="tab">
-                                <i class="material-icons">desktop_mac</i>
-                                Gestionar productos
-                            </a>
-                        </li>                        
-                        <li>
-                            <a href="#tasks" role="tab" data-toggle="tab">
-                                <i class="material-icons">category</i>
-                                Gestionar Categorías
-                            </a>
-                        </li>
-                    </ul>                             
-                    
-	            </div>
-
-	        </div>
+    </div>
 </div>
 
 @include('includes.footer')

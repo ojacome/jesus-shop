@@ -15,7 +15,7 @@ class Cart extends Model
     public function existeProducto($id){     
 
         $productAlreadyExists = $this->details()->where('product_id', $id)->exists(); 
-        // dd($productAlreadyExists);    
+        
         return $productAlreadyExists;        
     }
 }
