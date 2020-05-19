@@ -17,6 +17,7 @@ Route::get('/categories/{category}', 'CategoryController@show');
 Route::post('/cart', 'CartDetailController@store');
 Route::delete('/cart', 'CartDetailController@destroy');
 
+Route::get('/order', 'CartController@show');
 Route::post('/order', 'CartController@update');
 
 //grupo de rutas se implementa prefijo y dos middleware

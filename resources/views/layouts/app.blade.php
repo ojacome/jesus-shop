@@ -75,6 +75,10 @@
 									<li>
 										<a href="{{ url('/admin/categories') }}">Gestionar categorias</a>
 									</li>
+									@else 
+									<li>
+										<a href="{{ url('/order') }}">Compras</a>
+									</li>
 									@endif
 									
                                     <li>

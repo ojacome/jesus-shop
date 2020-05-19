@@ -6,6 +6,11 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function update(){
 
         $cart = auth()->user()->cart;
@@ -17,6 +22,12 @@ class CartController extends Controller
         }
         
         return back()->with(compact('notification'));
+
+    }
+
+    public function show(){
+        
+        return view('order');
 
     }
 }
