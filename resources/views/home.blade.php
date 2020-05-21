@@ -71,12 +71,14 @@
                             @endforeach
                         </tbody>
                         <tfoot>
-                            <tr class="warning">
-                                
-                                <td class="text-right" colspan="4">
+                            <tr >
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td class="warning text-right" >
                                     <h4 class="title">TOTAL</h1>
                                 </td>
-                                <td class="text-right">
+                                <td class="warning text-right">
                                     <h4>$ {{ auth()->user()->cart->calcularTotal() }}</h1>
                                 </td>
                             </tr>

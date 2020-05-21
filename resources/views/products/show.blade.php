@@ -20,6 +20,7 @@
 
                     <div class="name">
                         <h3 class="title">{{$product->name}}</h3>
+                        <h3 class="title">$ {{$product->price}}</h3>
                         <h6>{{$product->category->name}}</h6>
                     </div>
                 </div>
@@ -98,6 +99,9 @@
         </div>
     </div>
 </div>    
+@include('includes.footer')
+
+@endsection
 
 <!-- Modal Core -->
 <div class="modal fade" id="modalAddToCart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -111,8 +115,24 @@
       <form action="{{ url('/cart') }}" method="post">
         @csrf   
         <input type="hidden" name="product_id" value="{{$product->id}}">
-        <div class="modal-body">
-            <input type="number" name="quantity" value="1" class="form-control">
+        <div class="modal-body">   
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group label-floating">
+                        <label class="control-label">Cantidad</label>
+                        <input type="number" name="quantity" min="1" value="1" class="form-control">						
+                    </div>
+                </div>         
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group label-floating">
+                        <label class="control-label">Total</label>
+                        <input type="text" name="quantity" class="form-control" disabled value="$ {{$product->price }}">					
+                    </div>
+                </div>         
+            </div>                        
         </div>
 
         <div class="modal-footer">
@@ -124,7 +144,3 @@
     </div>
   </div>
 </div>
-
-@include('includes.footer')
-
-@endsection
