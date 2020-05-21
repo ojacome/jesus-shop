@@ -15,6 +15,7 @@ class CartController extends Controller
 
         $cart = auth()->user()->cart;
         $cart->status = 'Pending';
+        $cart->total = $cart->calcularTotal();
         $result = $cart->save();
 
         if($result){

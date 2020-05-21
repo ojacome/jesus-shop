@@ -17,13 +17,16 @@
 
 <div class="main main-raised">
     <div class="container">		    	
-        <div class="section">	                                			                                                                                                               
+        <div class="section">	                                		
+
+        	@if(auth()->user()->orders->count()>0)                                                                                                          
             <table class="table">
                 <thead>
                     <tr>                        
-                        <th class="text-center">N°</th>
+                        <th class="text-center">N° Pedido</th>
                         <th class="text-center">Estado</th>
-                        <th class="text-center">Fecha</th>
+                        <th class="text-center">Fecha y hora</th>
+                        <th class="text-center">Total</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -32,7 +35,8 @@
                         <td class="text-center">{{$order->id}}</td>              
                         <td class="text-center">{{$order->status}}</td>                                 
                         <td class="text-center">{{$order->updated_at}}</td>
-
+                        <td class="text-center">$ {{$order->total}}</td>
+                        
                         <td class="td-actions text-right">
                             <a href="#" rel="tooltip" title="Ver" class="btn btn-info btn-simple btn-xs">
                                     <i class="fa fa-info"></i>
@@ -41,11 +45,14 @@
                     </tr>
                     @endforeach
                 </tbody>
-            </table>                                       
-            
-            
+            </table>   
+            @else
+                <p> Estimado cliente... No tienes compras por el momento.</p>  
+                <p> Conoce todos nuestros productos hacieno clic    
+                    <a class="btn btn-primary btn-simple" href="{{ url('/#categories') }}">aquí</a>         
+                </p>                                                   
+            @endif                                                            
         </div>
-
     </div>
 </div>
 

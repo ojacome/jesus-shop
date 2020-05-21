@@ -30,6 +30,7 @@ class CreateCartDetailsTable extends Migration
             $table->float('total');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

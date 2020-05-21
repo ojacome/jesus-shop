@@ -23,6 +23,7 @@ class CreateCategoriesTable extends Migration
             $table->string('image')->nullable();//opcional, puede ser null
             
             $table->timestamps();//crea created_at y update_at
+            $table->softDeletes();
         });
     }
 

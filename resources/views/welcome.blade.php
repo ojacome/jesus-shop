@@ -131,8 +131,8 @@
 					</div>
 	            </div>
 
-	        	<div class="section text-center">
-	                <h2 class="title">Categorías</h2>					
+	        	<div class="section text-center" id="categories">
+	                <h2 class="title" >Categorías</h2>					
 
 					<div class="team">
 						<div class="row">
@@ -143,7 +143,7 @@
 			                        <img src="{{$category->featured_image_url}}" alt="Imagen {{$category->name}}" class="img-raised img-circle">
 
 			                        <h4 class="title">
-										<a href="{{ url('/categories/'.$category->id) }}">{{$category->name}}</a>										
+										<a href="{{ url('/categories/'.$category->id) }}" >{{$category->name}}</a>										
 									</h4>
 
 			                        <p class="description">{{$category->description}}</p>

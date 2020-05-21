@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CartDetail extends Model
 {
+    use SoftDeletes;
+
+    
     //cartDetails N     1 Product
     public function product(){
 

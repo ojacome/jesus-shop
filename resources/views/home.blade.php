@@ -25,7 +25,7 @@
                         </div>
                     @endif                                                               
 
-                    <p> Tu carrito de compras presenta {{auth()->user()->cart->details->count()}} productos.</p>                               
+                    <p> Tu carrito de compras presenta {{auth()->user()->cart->details->count()}} producto(s).</p>                               
                     <hr>
                     
                     @if(auth()->user()->cart->details->count()>0)
@@ -33,7 +33,7 @@
                         <thead>
                             <tr>
                                 <th class="text-center">imagen</th>
-                                <th class="text-center">Nombre</th>
+                                <th >Nombre</th>
                                 <th class="text-right">Precio</th>
                                 <th class="text-right">Cantidad</th>
                                 <th class="text-right">Subtotal</th>
@@ -70,6 +70,17 @@
                             </tr>
                             @endforeach
                         </tbody>
+                        <tfoot>
+                            <tr class="warning">
+                                
+                                <td class="text-right" colspan="4">
+                                    <h4 class="title">TOTAL</h1>
+                                </td>
+                                <td class="text-right">
+                                    <h4>$ {{ auth()->user()->cart->calcularTotal() }}</h1>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                     
                     <div class="text-center">

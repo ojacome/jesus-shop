@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
+    use SoftDeletes;
+    
     // $product->category
     public function category(){
 
@@ -22,13 +25,15 @@ class Product extends Model
     public function getFeaturedImageUrlAttribute(){
 
         $featuredImage = $this->images()->where('featured',true)->first();
-        if(!$featuredImage){
-            $featuredImage = $this->images()->first();
-        }
-
-        if($featuredImage){
-            return $featuredImage->url; //accessor en ProductImage
-        }
+        
+            if(!$featuredImage){
+                $featuredImage = $this->images()->first();
+            }
+    
+            if($featuredImage){
+                return $featuredImage->url; //accessor en ProductImage
+            }
+        
 
         //imagen por defecto
         return '/images/products/no_image.png';
