@@ -56,7 +56,7 @@
 
             <hr>
             <div class="text-center">
-            @if(auth()->user()->cart->existeProducto($product->id))                
+            @if( auth()->check() && auth()->user()->cart->existeProducto($product->id) )                
                 <a href="{{ url('/home') }}" class="btn btn-primary btn-round">
                     <i class="material-icons">arrow_forward</i> Producto en el carrito
                 </a>                
