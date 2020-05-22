@@ -117,22 +117,20 @@
         <input type="hidden" name="product_id" value="{{$product->id}}">
         <div class="modal-body">   
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="form-group label-floating">
                         <label class="control-label">Cantidad</label>
-                        <input type="number" name="quantity" min="1" value="1" class="form-control">						
+                        <input id="quantity" type="number" name="quantity" min="1" value="1" class="form-control" onchange="myFunction(this.value)">						
                     </div>
                 </div>         
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4">
+                <input type="hidden" id="price" value="{{ $product->price }}">
+                <div class="col-sm-6">
                     <div class="form-group label-floating">
                         <label class="control-label">Total</label>
-                        <input type="text" name="quantity" class="form-control" disabled value="$ {{$product->price }}">					
+                        <input type="text" id="total" name="total" class="form-control" disabled value="$ {{$product->price }}">					
                     </div>
-                </div>         
-            </div>                        
+                </div>  
+            </div>                      
         </div>
 
         <div class="modal-footer">
@@ -144,3 +142,11 @@
     </div>
   </div>
 </div>
+
+@section('scripts')
+<script>
+    function myFunction(val) {
+        total.value = `$ ${val * price.value}`;             
+    }   
+</script>
+@endsection
