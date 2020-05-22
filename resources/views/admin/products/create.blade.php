@@ -20,7 +20,7 @@
 	        	<div class="section">	                
 
 					<!-- alert de validaciones  -->
-					@if($errors->any())
+					<!-- @if($errors->any())
 						<div class="alert alert-danger">
 							<ul>
 							@foreach ($errors->all() as $error)
@@ -28,7 +28,7 @@
 							@endforeach
 							</ul>
 						</div>
-					@endif
+					@endif -->
 					
 					<form method="post" action="{{ url('/admin/products')}}">
 					@csrf
@@ -39,6 +39,14 @@
 								<label class="control-label">Nombre del producto</label>
 								<input type="text" name="name" class="form-control" value="{{ old('name')}} ">
 							</div>
+							@error('name')
+								<div class="alert alert-danger">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true"><i class="material-icons">clear</i></span>
+									</button>
+									<strong>{{ $message }}</strong>
+								</div>
+							@enderror
 						</div>
 
 						<div class="col-sm-4">
@@ -46,6 +54,14 @@
 								<label class="control-label">Precio del producto</label>
 								<input type="number" name="price" min="1" class="form-control" value="{{ old('price')}}">						
 							</div>
+							@error('price')
+								<div class="alert alert-danger">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true"><i class="material-icons">clear</i></span>
+									</button>
+									<strong>{{ $message }}</strong>
+								</div>
+							@enderror
 						</div>
 
 						<div class="col-sm-4">
@@ -53,6 +69,14 @@
 								<label class="control-label">STOCK</label>
 								<input type="number" name="stock" min="0" class="form-control" value="{{ old('stock')}}">						
 							</div>
+							@error('stock')
+								<div class="alert alert-danger">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true"><i class="material-icons">clear</i></span>
+									</button>
+									<strong>{{ $message }}</strong>
+								</div>
+							@enderror
 						</div>
 					</div>
 					
@@ -73,6 +97,14 @@
 								<label class="control-label">Descripción corta</label>
 								<input type="text" name="description" class="form-control" value="{{ old('description')}}">
 							</div>	
+							@error('description')
+								<div class="alert alert-danger">
+									<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+										<span aria-hidden="true"><i class="material-icons">clear</i></span>
+									</button>
+									<strong>{{ $message }}</strong>
+								</div>
+							@enderror
 						</div>
 
 					</div>																		

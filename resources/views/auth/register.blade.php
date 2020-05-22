@@ -52,7 +52,12 @@
 										<span class="input-group-addon">
 											<i class="material-icons">lock_outline</i>
 										</span>                                        
-                                        <input id="password" placeholder="Contraseña..." type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+										<input id="password" placeholder="Contraseña..." type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+										<span class="input-group-addon">
+											<button class="btn btn-primary btn-simple" type="button" onclick="mostrarContrasena()">
+												<i class="material-icons">visibility</i>
+											</button>
+										</span>
 
                                         @error('password')
                                             <span class="invalid-feedback" role="alert">
