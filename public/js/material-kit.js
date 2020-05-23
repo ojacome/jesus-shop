@@ -129,10 +129,14 @@ function debounce(func, wait, immediate) {
 };
 
 function mostrarContrasena(){
-    var tipo = document.getElementById("password");
+    var tipo = document.getElementById("password");    
+
     if(tipo.type == "password"){
         tipo.type = "text";
+        // document.getElementById("show_password").value = "visibility_off";
+
     }else{
         tipo.type = "password";
+        // document.getElementById("show_password").value = "visibility";
     }
 }

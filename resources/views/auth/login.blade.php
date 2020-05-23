@@ -48,7 +48,7 @@
 								<input id="password" placeholder="Password..." type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">								
 								<span class="input-group-addon">
 									<button class="btn btn-primary btn-simple" type="button" onclick="mostrarContrasena()">
-										<i class="material-icons">visibility</i>
+										<i class="material-icons" id="show_password">visibility</i>
 									</button>
 								</span>
 																								
